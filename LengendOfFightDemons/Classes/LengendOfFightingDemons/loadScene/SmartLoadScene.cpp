@@ -200,6 +200,14 @@ void SmartLoadScene::totalLoadComplete()
     actorData->stateContext->insertStateData(actorStateData);
     actorData->runAction(LOFD_ACTOR_STATE_IDLE);
     
+    actorData->actorContainer->setPosition(cocos2d::Point(280, 100));
+    actorData->actorPropertyData->hp = 10000;
+    actorData->actorPropertyData->currentHp = 10000;
+    mapScene->addOperationActor(actorData);
+    mapScene->changeFocus(actorData);
+    
+    cocos2d::Director::getInstance()->replaceScene(mapScene);
+    
     constellation::BehaviorEvent * behaviorEvent = new constellation::BehaviorEvent(LOFD_BEHAVIOR_EVENT_AI_PATROL);
     lofd::AIBehaviorDynamicData * behaviorDynamicData = new lofd::AIBehaviorDynamicData();
     behaviorDynamicData->actorData = actorData;
@@ -209,13 +217,5 @@ void SmartLoadScene::totalLoadComplete()
     actorData->aiBehavior->root->execute(behaviorEvent);
     delete behaviorEvent;
     delete behaviorDynamicData;
-    
-    actorData->actorContainer->setPosition(cocos2d::Point(280, 100));
-    actorData->actorPropertyData->hp = 10000;
-    actorData->actorPropertyData->currentHp = 10000;
-    mapScene->addOperationActor(actorData);
-    mapScene->changeFocus(actorData);
-    
-    cocos2d::Director::getInstance()->replaceScene(mapScene);
 }
 NS_LOFD_END;
