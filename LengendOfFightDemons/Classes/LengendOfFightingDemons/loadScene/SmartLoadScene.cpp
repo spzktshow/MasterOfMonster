@@ -177,6 +177,7 @@ void SmartLoadScene::loadSkillData(lofd::LoadContext *loadContextValue)
 void SmartLoadScene::totalLoadComplete()
 {
     lofd::MapScene * mapScene = lofd::MapScene::create(lofd::ConfigManager::getInstance()->currentSceneDataConfig);
+    mapScene->dungeonDef = lofd::ConfigManager::getInstance()->dungeonConfig->getDungeonDefById(300011);
     
 //    lofd::ActorData * actorData = lofd::ActorControllerUtils::createActorDataById(MY_ACTOR_PINGZHI_ID);
 //    actorData->isRange = false;
@@ -192,7 +193,7 @@ void SmartLoadScene::totalLoadComplete()
 //    mapUILayer->changeFocus(actorData);
 //    mapScene->addActor(actorData);
     
-    lofd::ActorData * actorData = lofd::ActorControllerUtils::createActorDataById(710040);
+    lofd::ActorData * actorData = lofd::ActorControllerUtils::createActorDataById(710040, mapScene->dungeonDef);
     actorData->isAI = false;
     actorData->isRange = false;
 //    lofd::ActorStateData * actorStateData = new lofd::ActorStateData(LOFD_ACTOR_STATE_IDLE, LOFD_ACTOR_STATE_OPERATION_TYPE_AI);
@@ -206,16 +207,27 @@ void SmartLoadScene::totalLoadComplete()
     mapScene->addOperationActor(actorData);
     mapScene->changeFocus(actorData);
     
+    actorData = lofd::ActorControllerUtils::createActorDataById(740130, mapScene->dungeonDef);
+    actorData->isAI = true;
+    actorData->isRange = true;
+    actorStateData = lofd::ActorStateData::create(LOFD_ACTOR_STATE_IDLE, LOFD_ACTOR_STATE_OPERATION_TYPE_AI);
+    actorData->stateContext->insertStateData(actorStateData);
+    actorData->runAction(LOFD_ACTOR_STATE_IDLE);
+    actorData->actorContainer->setPosition(cocos2d::Point(280, 100));
+    actorData->actorPropertyData->hp = 500;
+    actorData->actorPropertyData->currentHp = 500;
+    mapScene->addActor(actorData);
+    
     cocos2d::Director::getInstance()->replaceScene(mapScene);
     
-    constellation::BehaviorEvent * behaviorEvent = new constellation::BehaviorEvent(LOFD_BEHAVIOR_EVENT_AI_PATROL);
-    lofd::AIBehaviorDynamicData * behaviorDynamicData = new lofd::AIBehaviorDynamicData();
-    behaviorDynamicData->actorData = actorData;
-    behaviorDynamicData->mapSceneData = mapScene->mapSceneData;
-    behaviorDynamicData->operationType = LOFD_ACTOR_STATE_OPERATION_TYPE_AI;
-    behaviorEvent->behaviorData = behaviorDynamicData;
-    actorData->aiBehavior->root->execute(behaviorEvent);
-    delete behaviorEvent;
-    delete behaviorDynamicData;
+//    constellation::BehaviorEvent * behaviorEvent = new constellation::BehaviorEvent(LOFD_BEHAVIOR_EVENT_AI_PATROL);
+//    lofd::AIBehaviorDynamicData * behaviorDynamicData = new lofd::AIBehaviorDynamicData();
+//    behaviorDynamicData->actorData = actorData;
+//    behaviorDynamicData->mapSceneData = mapScene->mapSceneData;
+//    behaviorDynamicData->operationType = LOFD_ACTOR_STATE_OPERATION_TYPE_AI;
+//    behaviorEvent->behaviorData = behaviorDynamicData;
+//    actorData->aiBehavior->root->execute(behaviorEvent);
+//    delete behaviorEvent;
+//    delete behaviorDynamicData;
 }
 NS_LOFD_END;

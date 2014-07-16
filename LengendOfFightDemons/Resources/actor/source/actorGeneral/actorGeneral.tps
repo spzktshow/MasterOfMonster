@@ -151,6 +151,8 @@
             <filename>shadow.png</filename>
             <filename>blood.png</filename>
             <filename>bloodBg.png</filename>
+            <filename>blood1.png</filename>
+            <filename>blood2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

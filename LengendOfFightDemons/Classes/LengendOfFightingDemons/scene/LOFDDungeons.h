@@ -21,6 +21,7 @@ NS_LOFD_BEGIN
 #define DUNGEON_CONFIG_TAG_DUNGEON_ID           "dungeonId"
 #define DUNGEON_CONFIG_TAG_SCENE_ID             "sceneId"
 #define DUNGEON_CONFIG_TAG_TIME                 "time"
+#define DUNGEON_CONFIG_TAG_OPERATION_CAMP_ID    "operationCampId"
 
 #define DUNGEON_LIFE_CIRCLE_TYPE_TIME             "time"/********控制生命周期的时间********/
 #define DUNGEON_LIFE_CIRCLE_TYPE_GUARD_DESTORY    "guardDestory"/********目标达成*************/

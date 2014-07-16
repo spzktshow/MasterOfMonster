@@ -27,6 +27,7 @@
 #define LOFD_ACTOR_STATE_TRACK      "21"
 #define LOFD_ACTOR_STATE_TARGET     "22"
 #define LOFD_ACTOR_STATE_DEAD       "60"
+#define LOFD_ACTOR_STATE_STATICTRACK    "23"
 
 #define LOFD_ACTOR_STATE_DEAD_EFFECT "deadEffect"
 

@@ -19,6 +19,7 @@
 #include "LOFDSkillController.h"
 #include "ActorEvent.h"
 #include <vector>
+#include "LOFDDungeons.h"
 
 #define ACTOR_ANIMATION_GAP_TIME        0.1f
 
@@ -185,6 +186,11 @@ public:
     void targetComplete();
     bool isTarget;
     
+    /**********静态瞄准ActorData*******/
+    void staticTrack();
+    void staticTrackComplete();
+    void staticTrackUnRangeComplete();
+    
     virtual void update(float dt);
     virtual void trackUpdate();
     virtual void targetUpdate();
@@ -213,7 +219,8 @@ public:
 class ActorControllerUtils
 {
 public:
-    static ActorData * createActorDataById(int actorId);
+    static ActorData * createActorDataById(int actorId, lofd::DungeonDef * def);
+    
     static void resetActorIdIndex();
 };
 

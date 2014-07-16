@@ -163,6 +163,10 @@
 		64376BC018F05BC600E08858 /* barrier_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 64376BB718F05BC600E08858 /* barrier_config.json */; };
 		64376BC118F05BC600E08858 /* barrier_source.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64376BB818F05BC600E08858 /* barrier_source.plist */; };
 		64376BC218F05BC600E08858 /* barrier_source.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 64376BB918F05BC600E08858 /* barrier_source.pvr.ccz */; };
+		6439CF1C1975485A0033116D /* 74013.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6439CF1A1975485A0033116D /* 74013.plist */; };
+		6439CF1D1975485A0033116D /* 74013.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6439CF1A1975485A0033116D /* 74013.plist */; };
+		6439CF1E1975485A0033116D /* 74013.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6439CF1B1975485A0033116D /* 74013.pvr.ccz */; };
+		6439CF1F1975485A0033116D /* 74013.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6439CF1B1975485A0033116D /* 74013.pvr.ccz */; };
 		644CE42B19010E8200351514 /* 300011.json in Resources */ = {isa = PBXBuildFile; fileRef = 644CE41219010E8200351514 /* 300011.json */; };
 		644CE43419010E8200351514 /* 300010.json in Resources */ = {isa = PBXBuildFile; fileRef = 644CE41F19010E8200351514 /* 300010.json */; };
 		644CE43519010E8200351514 /* 300010.mss in Resources */ = {isa = PBXBuildFile; fileRef = 644CE42019010E8200351514 /* 300010.mss */; };
@@ -546,6 +550,8 @@
 		64376BB718F05BC600E08858 /* barrier_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = barrier_config.json; sourceTree = "<group>"; };
 		64376BB818F05BC600E08858 /* barrier_source.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = barrier_source.plist; sourceTree = "<group>"; };
 		64376BB918F05BC600E08858 /* barrier_source.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = barrier_source.pvr.ccz; sourceTree = "<group>"; };
+		6439CF1A1975485A0033116D /* 74013.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 74013.plist; sourceTree = "<group>"; };
+		6439CF1B1975485A0033116D /* 74013.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = 74013.pvr.ccz; sourceTree = "<group>"; };
 		644583901904F7B4008D1053 /* LOFDSkillController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOFDSkillController.h; sourceTree = "<group>"; };
 		644CE41219010E8200351514 /* 300011.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 300011.json; sourceTree = "<group>"; };
 		644CE41F19010E8200351514 /* 300010.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 300010.json; sourceTree = "<group>"; };
@@ -1235,6 +1241,8 @@
 		64E4DCB519073FDB00032041 /* actorState */ = {
 			isa = PBXGroup;
 			children = (
+				6439CF1A1975485A0033116D /* 74013.plist */,
+				6439CF1B1975485A0033116D /* 74013.pvr.ccz */,
 				64E4DCDA190742A300032041 /* 73003.pvr.ccz */,
 				64E4DCDB190742A300032041 /* 73003.plist */,
 				64E4DCDC190742A300032041 /* 73002.pvr.ccz */,
@@ -1477,6 +1485,7 @@
 				64193FE41960EE4C00440A94 /* 12003.plist in Resources */,
 				64193FF21960EE4C00440A94 /* 12008.pvr.ccz in Resources */,
 				64193FC21960EE4C00440A94 /* 10002.pvr.ccz in Resources */,
+				6439CF1E1975485A0033116D /* 74013.pvr.ccz in Resources */,
 				64193FF41960EE4C00440A94 /* 12010.plist in Resources */,
 				64193FE01960EE4C00440A94 /* 12002.plist in Resources */,
 				6465265318F66A9700365B79 /* continue.png in Resources */,
@@ -1528,6 +1537,7 @@
 				64E4DCCF19073FDB00032041 /* 71004.pvr.ccz in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 				64194002196106E700440A94 /* 11005.plist in Resources */,
+				6439CF1C1975485A0033116D /* 74013.plist in Resources */,
 				6457765E19358094000FE3F4 /* 300011background.plist in Resources */,
 				6465264F18F66A9000365B79 /* jump.png in Resources */,
 				645776521935806F000FE3F4 /* dead1.plist in Resources */,
@@ -1588,6 +1598,7 @@
 			files = (
 				6457766519358099000FE3F4 /* 300011front.plist in Resources */,
 				6419401319610E4B00440A94 /* 12012.plist in Resources */,
+				6439CF1F1975485A0033116D /* 74013.pvr.ccz in Resources */,
 				64193FC51960EE4C00440A94 /* 10003.plist in Resources */,
 				6457764919358058000FE3F4 /* skillEffectConfig.json in Resources */,
 				6457766119358094000FE3F4 /* 300011background.pvr.ccz in Resources */,
@@ -1612,6 +1623,7 @@
 				64193FE31960EE4C00440A94 /* 12002.pvr.ccz in Resources */,
 				64193FDF1960EE4C00440A94 /* 12001.pvr.ccz in Resources */,
 				64194007196106E700440A94 /* 12009.plist in Resources */,
+				6439CF1D1975485A0033116D /* 74013.plist in Resources */,
 				64193FBD1960EE4C00440A94 /* 10001.plist in Resources */,
 				64194009196106E700440A94 /* 12009.pvr.ccz in Resources */,
 				64193FD71960EE4C00440A94 /* 11002.pvr.ccz in Resources */,

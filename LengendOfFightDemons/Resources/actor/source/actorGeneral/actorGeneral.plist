@@ -7,6 +7,32 @@
             <key>blood.png</key>
             <dict>
                 <key>frame</key>
+                <string>{{2,22},{94,7}}</string>
+                <key>offset</key>
+                <string>{0,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{12,5},{94,7}}</string>
+                <key>sourceSize</key>
+                <string>{118,21}</string>
+            </dict>
+            <key>blood1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,13},{94,7}}</string>
+                <key>offset</key>
+                <string>{0,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{12,5},{94,7}}</string>
+                <key>sourceSize</key>
+                <string>{118,21}</string>
+            </dict>
+            <key>blood2.png</key>
+            <dict>
+                <key>frame</key>
                 <string>{{102,2},{94,7}}</string>
                 <key>offset</key>
                 <string>{0,2}</string>
@@ -33,7 +59,7 @@
             <key>shadow.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,13},{168,76}}</string>
+                <string>{{2,31},{168,76}}</string>
                 <key>offset</key>
                 <string>{2,2}</string>
                 <key>rotated</key>
@@ -53,7 +79,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:387d3c79aa93b4b79703ddecd1696d46:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:dd717fa5c59a657bd1a6e3cadea31530:1/1$</string>
             <key>textureFileName</key>
             <string>actorGeneral.pvr.ccz</string>
         </dict>

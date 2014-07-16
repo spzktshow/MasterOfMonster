@@ -29,7 +29,8 @@ bool ApplicationMainScene::init()
         return false;
     }
     
-    auto goSceneItem = cocos2d::MenuItemImage::create("joke.png", "joke.png", CC_CALLBACK_1(ApplicationMainScene::onGoSceneHandler, this));
+    std::string jokeFullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("joke.png");
+    auto goSceneItem = cocos2d::MenuItemImage::create(jokeFullPath, jokeFullPath, CC_CALLBACK_1(ApplicationMainScene::onGoSceneHandler, this));
     auto menu = cocos2d::Menu::create(goSceneItem, NULL);
     menu->setPosition(cocos2d::Point::ZERO);
     this->addChild(menu, 1);
@@ -62,7 +63,8 @@ void ApplicationMainScene::onGoSceneHandler(cocos2d::Ref *pSender)
     stateIds.push_back(71003);
     stateIds.push_back(71004);
     stateIds.push_back(71005);
-        stateIds.push_back(71006);
+    stateIds.push_back(71006);
+    stateIds.push_back(74013);
     loadConfigContext = lofd::LoadConfigContext::create(TYPE_CONFIG_JSON, "actorStateConfig.json", CONFIG_TYPE_ACTOR_STATE);
     loadContexts.pushBack(loadConfigContext);
     loadConfigContext = lofd::LoadConfigContext::create(TYPE_CONFIG_JSON, "actionConfig.json", CONFIG_TYPE_ACTOR_ACTION);

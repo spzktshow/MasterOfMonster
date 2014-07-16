@@ -30,6 +30,7 @@ void DungeonConfig::parse(std::string dataValue)
             def->dungeonId = cocostudio::DictionaryHelper::getInstance()->getIntValue_json(dungeonDefValue, DUNGEON_CONFIG_TAG_DUNGEON_ID);
             def->sceneId = cocostudio::DictionaryHelper::getInstance()->getIntValue_json(dungeonDefValue, DUNGEON_CONFIG_TAG_SCENE_ID);
             def->type = cocostudio::DictionaryHelper::getInstance()->getStringValue_json(dungeonDefValue, DUNGEON_CONFIG_TAG_TYPE);
+            def->operationCampId = cocostudio::DictionaryHelper::getInstance()->getIntValue_json(dungeonDefValue, DUNGEON_CONFIG_TAG_OPERATION_CAMP_ID);
             int lifeCirclesCount = cocostudio::DictionaryHelper::getInstance()->getArrayCount_json(dungeonDefValue, DUNGEON_CONFIG_TAG_LIFE_CIRCLES);
             for (int j = 0; j < lifeCirclesCount; j ++) {
                 const rapidjson::Value & lifeCircleDefValue = cocostudio::DictionaryHelper::getInstance()->getDictionaryFromArray_json(dungeonDefValue, DUNGEON_CONFIG_TAG_LIFE_CIRCLES, j);

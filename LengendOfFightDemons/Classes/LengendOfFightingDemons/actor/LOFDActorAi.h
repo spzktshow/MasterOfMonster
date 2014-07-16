@@ -28,6 +28,7 @@
 #define LOFD_AI_STATE_AI_MOVE                       /**/"aiMove"//移动状态@state*///
 #define LOFD_AI_STATE_AI_PATROL                     /**/"aiPatrol"//巡逻状态@state*///
 #define LOFD_AI_STATE_AI_IDLE                       /**/"aiIdle"//空闲状态@state*///
+#define LOFD_AI_STATE_AI_STATE_TRACK                /**/"aiStateTrack"//ai 静态track状态@state///
 
 #define LOFD_BEHAVIOR_EVENT_ATTACK_END              /**/"attackEndEvent"//老的事件，可能需要废弃@event*///
 
@@ -36,12 +37,15 @@
 
 #define LOFD_BEHAVIOR_EVENT_AI_TRACK                /**/"aiTrackEvent"//*******释放track技能时向ai发送track事件(操作事件or策略事件)****@event*///
 #define LOFD_BEHAVIOR_EVENT_AI_TARGET               /**/"aiTargetEvent"//*******释放target技能时向ai发送target事件(操作事件or策略事件)*****@event*///
+#define LOFD_BEHAVIOR_EVENT_AI_STATIC_TRACK         /**/"aiStaticTrackEvent"//****释放track技能时向ai发送static track⌚️****@event*///
 #define LOFD_BEHAVIOR_EVENT_AI_PATROL               /**/"aiPatrolEvent"//*******巡逻状态(循环状态)(操作事件or策略事件)*******@event*///
+#define LOFD_BEHAVIOR_EVENT_AI_CANCEL_PATROL        /**/"aiCancelPatrolEvent"//***************@event*///
 #define LOFD_BEHAVIOR_EVENT_AI_IDLE                 /**/"aiIdleEvent"//*******空闲状态(循环状态)(操作事件or策略事件)*******@event*///
 #define LOFD_BEHAVIOR_EVENT_AI_MOVE                 /**/"aiMoveEvent"//*******释放移动(操作事件or策略事件)*********@event*///
 
 #define LOFD_BEHAVIOR_EVENT_TRACK_END               /**/"trackEndEvent"//***人物跟踪目标完成(人物行为结束发送事件)***@event*///
 #define LOFD_BEHAVIOR_EVENT_TARGET_END              /**/"targetEndEvent"//***人物目标完成(人物行为结束发送事件)***@event*///
+#define LOFD_BEHAVIOR_EVENT_STATIC_TRACK_END        /**/"staticTrackEndEvent"//****人物静态瞄准目标完成***@event*///
 #define LOFD_BEHAVIOR_EVENT_ATK1_END                /**/"atk1EndEvent"//****人物普通攻击动作完成(人物行为结束发送事件)***@event*///
 #define LOFD_BEHAVIOR_EVENT_ATK2_END                /**/"atk2EndEvent"//****人物普通攻击动作2完成(人物行为结束发送事件)***@event*///
 #define LOFD_BEHAVIOR_EVENT_SKILL1_END              /**/"skill1EndEvent"//****人物技能攻击动作1完成(人物行为结束发送事件)****@event*///
@@ -259,6 +263,32 @@ public:
     };
 };
 ///
+#define LOFD_AI_BehaviorTree_actionType_cancelStackCacheState       /**/"behaviorTreeActionTypeCancelStackCacheState"//取消栈保存@action
+class AICancelStackCacheState : public constellation::ActionBehaviorNode
+{
+public:
+    AICancelStackCacheState(std::string typeValue, std::string actionTypeValue):ActionBehaviorNode(typeValue, actionTypeValue){};
+    ~AICancelStackCacheState(){};
+    
+    virtual int execute(constellation::BehaviorEvent * behaviorEventValue);
+    
+    static AICancelStackCacheState * create(std::string typeValue, std::string actionTypeValue)
+    {
+        AICancelStackCacheState * aiCancelStackCacheState = new AICancelStackCacheState(typeValue, actionTypeValue);
+        if (aiCancelStackCacheState)
+        {
+            aiCancelStackCacheState->autorelease();
+            return aiCancelStackCacheState;
+        }
+        else
+        {
+            delete aiCancelStackCacheState;
+            aiCancelStackCacheState = nullptr;
+            return nullptr;
+        }
+    };
+};
+///
 #define LOFD_AI_BehaviorTree_actionType_getRangeCampLessThan        /**/"behaviorTreeActionTypeGetRangeCampLessThan"//获取camp值小于@action|campCampareValue-int///
 class AIGetRangeCampLessThan : public constellation::ActionBehaviorNode
 {
@@ -440,6 +470,32 @@ public:
         {
             delete aiTrack;
             aiTrack = nullptr;
+            return nullptr;
+        }
+    };
+};
+///
+#define LOFD_AI_BehaviorTree_actionType_staticTrack     /**/"behaviorTreeActionTypeStaticTrack"//staticTrack@action///
+class AIStaticTrack : public constellation::ActionBehaviorNode
+{
+public:
+    AIStaticTrack(std::string typeValue, std::string actionTypeValue):ActionBehaviorNode(typeValue, actionTypeValue){};
+    ~AIStaticTrack(){};
+    
+    virtual int execute(constellation::BehaviorEvent * behaviorEventValue);
+    
+    static AIStaticTrack * create(std::string typeValue, std::string actionTypeValue)
+    {
+        AIStaticTrack * aiStaticTrack = new AIStaticTrack(typeValue, actionTypeValue);
+        if (aiStaticTrack)
+        {
+            aiStaticTrack->autorelease();
+            return aiStaticTrack;
+        }
+        else
+        {
+            delete aiStaticTrack;
+            aiStaticTrack = nullptr;
             return nullptr;
         }
     };

@@ -22,7 +22,7 @@ NS_LOFD_BEGIN
 void ActorData::runAction(std::string actionTag)
 {
     lofd::ActorStateDef * actorStateDef = this->actorStateGroupDef->getActorStateMatchByTag(actionTag);
-    //cocos2d::log("%s", actionTag.c_str());
+    cocos2d::log("%s", actionTag.c_str());
     actorEntry->setAnchorPoint(cocos2d::Point(actorStateDef->relativePoint->x, actorStateDef->relativePoint->y));
     cocos2d::Animate * animate = animationDic.at(actorStateDef->tag);
     cocos2d::FiniteTimeAction * actionDone = cocos2d::CallFunc::create(CC_CALLBACK_0(ActorData::runActionComplete, this));
@@ -195,6 +195,41 @@ void ActorData::moveComplete()
     actorAIBehaviorData = nullptr;
 }
 
+void ActorData::staticTrack()
+{
+    lofd::SkillConfig * skillConfig = lofd::ConfigManager::getInstance()->skillConfig;
+    lofd::SkillDef * skillDef = skillConfig->getSkillDefById(this->currentFocusSkill);
+    
+    cocos2d::Point * leftPoint = new cocos2d::Point(this->currentFocus->actorContainer->getPositionX(), this->currentFocus->actorContainer->getPositionY());
+    cocos2d::Point * rightPoint = new cocos2d::Point(this->actorContainer->getPositionX(), this->actorContainer->getPositionY());
+    
+    float distance = moonsugar::VectorUtils::calculateDistance(leftPoint, rightPoint);
+    bool isFlip = moonsugar::VectorUtils::calculateRowVector(rightPoint, leftPoint);
+    this->actorEntry->setFlippedX(!isFlip);
+    
+    if (skillDef->skillRangeDef->type == SKILL_RANGE_TYPE_R)
+    {
+        lofd::SkillRangeRDef * skillRangeRDef = dynamic_cast<lofd::SkillRangeRDef *>(skillDef->skillRangeDef);
+        if (distance <= skillRangeRDef->r)
+        {
+            staticTrackComplete();
+            return;
+        }
+    }
+    
+    staticTrackUnRangeComplete();
+}
+
+void ActorData::staticTrackComplete()
+{
+    
+}
+
+void ActorData::staticTrackUnRangeComplete()
+{
+    
+}
+
 void ActorData::track()
 {
     //
@@ -349,10 +384,6 @@ void ActorData::update(float dt)
 
 void ActorData::targetUpdate()
 {
-    if (this->tagId == 1)
-    {
-        cocos2d::log("fdafd");
-    }
     lofd::SkillConfig * skillConfig = lofd::ConfigManager::getInstance()->skillConfig;
     lofd::SkillDef * skillDef = skillConfig->getSkillDefById(this->currentFocusSkill);
     
@@ -384,10 +415,6 @@ void ActorData::targetUpdate()
 
 void ActorData::trackUpdate()
 {
-    if (this->tagId == 1)
-    {
-        cocos2d::log("fdafds");
-    }
     lofd::SkillConfig * skillConfig = lofd::ConfigManager::getInstance()->skillConfig;
     lofd::SkillDef * skillDef = skillConfig->getSkillDefById(this->currentFocusSkill);
     
@@ -587,7 +614,7 @@ void ActorControllerUtils::resetActorIdIndex()
     tagIdIndex = 0;
 }
 
-ActorData * ActorControllerUtils::createActorDataById(int actorId)
+ActorData * ActorControllerUtils::createActorDataById(int actorId, lofd::DungeonDef * def)
 {
     tagIdIndex ++;
     //actorData
@@ -690,7 +717,20 @@ ActorData * ActorControllerUtils::createActorDataById(int actorId)
     actorPropertyData->hp = 1000;
     actorPropertyData->currentHp = 1000;
     //blood
-    cocos2d::SpriteFrame * bloodSF = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("blood.png");
+    lofd::CampRelationShipDef * campRelationShipDef = campDef->getDefByCampId(def->operationCampId);
+    cocos2d::SpriteFrame * bloodSF;
+    if (campRelationShipDef->relationShip == 0)
+    {
+        bloodSF = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("blood1.png");
+    }
+    else if (campRelationShipDef->relationShip > 0)
+    {
+        bloodSF = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("blood.png");
+    }
+    else if (campRelationShipDef->relationShip < 0)
+    {
+        bloodSF = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("blood2.png");
+    }
     cocos2d::SpriteFrame * bloodBgSF = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("bloodBg.png");
     cocos2d::Sprite * blood = cocos2d::Sprite::createWithSpriteFrame(bloodSF);
     cocos2d::Sprite * bloodBg = cocos2d::Sprite::createWithSpriteFrame(bloodBgSF);

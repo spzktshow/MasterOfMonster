@@ -90,6 +90,25 @@ int AIRandMoveTarget::execute(constellation::BehaviorEvent *behaviorEventValue)
     return BEHAVIOR_RESULT_SUCCESS;
 }
 
+int AICancelStackCacheState::execute(constellation::BehaviorEvent *behaviorEventValue)
+{
+    lofd::AIBehaviorDynamicData * data = (lofd::AIBehaviorDynamicData *)behaviorEventValue->behaviorData;
+    data->actorData->aiStateContext->removeStateDataChangeNext(1);
+    if (data->actorData->aiStateContext->currentState->itemName == LOFD_AI_STATE_AI_IDLE)
+    {
+        lofd::AIBehaviorDynamicData * data = (lofd::AIBehaviorDynamicData *)behaviorEventValue->behaviorData;
+        constellation::BehaviorEvent * actionBehaviorEvent = new constellation::BehaviorEvent(LOFD_ACTOR_BEHAVIOR_EVENT_IDLE);
+        lofd::ActorBehaviorData * behaviorData = new lofd::ActorBehaviorData;
+        behaviorData->actorData = data->actorData;
+        behaviorData->operationType = data->operationType;
+        actionBehaviorEvent->behaviorData = behaviorData;
+        data->actorData->actorBehavior->root->execute(actionBehaviorEvent);
+        delete actionBehaviorEvent;
+        delete behaviorData;
+    }
+    return BEHAVIOR_RESULT_SUCCESS;
+}
+
 int AICancelCurrentState::execute(constellation::BehaviorEvent *behaviorEventValue)
 {
     lofd::AIBehaviorDynamicData * data = (lofd::AIBehaviorDynamicData *)behaviorEventValue->behaviorData;
@@ -318,6 +337,18 @@ int AIAttack::execute(constellation::BehaviorEvent *behaviorEventValue)
     }
 #endif//LOFD_AI_DEBUG
     return BEHAVIOR_RESULT_SUCCESS;
+}
+
+int AIStaticTrack::execute(constellation::BehaviorEvent *behaviorEventValue)
+{
+    lofd::AIBehaviorDynamicData * data = static_cast<lofd::AIBehaviorDynamicData *>(behaviorEventValue->behaviorData);
+#if LOFD_AI_DEBUG
+    if (data->actorData->tagId == testTagId)
+    {
+        cocos2d::log("ai static track tagId=%d", data->actorData->tagId);
+    }
+#endif//LOFD_AI_DEBUG
+    
 }
 
 int AITrack::execute(constellation::BehaviorEvent *behaviorEventValue)

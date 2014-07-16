@@ -562,21 +562,29 @@ void lofd::MapScene::changeFocus(lofd::ActorData * actorDataValue)
     {
         this->currentFocus->isCurrentFocus = false;
         
-        constellation::BehaviorEvent * behaviorEvent = new constellation::BehaviorEvent(LOFD_BEHAVIOR_EVENT_AI_PATROL);
-        lofd::AIBehaviorDynamicData * behaviorDynamicData = new lofd::AIBehaviorDynamicData();
-        behaviorDynamicData->actorData = this->currentFocus;
-        behaviorDynamicData->mapSceneData = this->mapSceneData;
-        behaviorDynamicData->operationType = LOFD_ACTOR_STATE_OPERATION_TYPE_AI;
-        behaviorEvent->behaviorData = behaviorDynamicData;
-        this->currentFocus->aiBehavior->root->execute(behaviorEvent);
-        delete behaviorEvent;
-        delete behaviorDynamicData;
+//        constellation::BehaviorEvent * behaviorEvent = new constellation::BehaviorEvent(LOFD_BEHAVIOR_EVENT_AI_PATROL);
+//        lofd::AIBehaviorDynamicData * behaviorDynamicData = new lofd::AIBehaviorDynamicData();
+//        behaviorDynamicData->actorData = this->currentFocus;
+//        behaviorDynamicData->mapSceneData = this->mapSceneData;
+//        behaviorDynamicData->operationType = LOFD_ACTOR_STATE_OPERATION_TYPE_AI;
+//        behaviorEvent->behaviorData = behaviorDynamicData;
+//        this->currentFocus->aiBehavior->root->execute(behaviorEvent);
+//        delete behaviorEvent;
+//        delete behaviorDynamicData;
     }
     
     this->currentFocus = actorDataValue;
     this->currentFocus->isCurrentFocus = true;
     
-    
+//    constellation::BehaviorEvent * behaviorEvent = new constellation::BehaviorEvent(LOFD_BEHAVIOR_EVENT_AI_CANCEL_PATROL);
+//    lofd::AIBehaviorDynamicData * behaviorDynamicData = new lofd::AIBehaviorDynamicData();
+//    behaviorDynamicData->actorData = this->currentFocus;
+//    behaviorDynamicData->mapSceneData = this->mapSceneData;
+//    behaviorDynamicData->operationType = LOFD_ACTOR_STATE_OPERATION_TYPE_AI;
+//    behaviorEvent->behaviorData = behaviorDynamicData;
+//    this->currentFocus->aiBehavior->root->execute(behaviorEvent);
+//    delete behaviorEvent;
+//    delete behaviorDynamicData;
     
     lofd::MapUILayer * mapUILayer = dynamic_cast<lofd::MapUILayer *>(this->getMapUILayer());
     mapUILayer->changeFocus(this->currentFocus);
@@ -676,12 +684,12 @@ void MapUILayer::addActorCallBack(cocos2d::Ref *pSender)
     ids.push_back(710010);
         ids.push_back(710020);
     ids.push_back(710040);
-        ids.push_back(710030);
+        //ids.push_back(710030);
     ids.push_back(710050);
     ids.push_back(710060);
     int i = rand() % ids.size();
     
-    lofd::ActorData * actorData = lofd::ActorControllerUtils::createActorDataById(ids.at(i));
+    lofd::ActorData * actorData = lofd::ActorControllerUtils::createActorDataById(ids.at(i), this->mapScene->dungeonDef);
     actorData->isAI = true;
     
     //cocos2d::Point * local = new cocos2d::Point(rand() % (int)this->mapLayerData->allowRect->size.width, rand() % (int)this->mapLayerData->allowRect->size.height);
